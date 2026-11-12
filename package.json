@@ -1,0 +1,11 @@
+{
+	"private": true,
+	"scripts": {
+		"test": "eslint --cache . && banana-checker i18n/"
+	},
+	"devDependencies": {
+		"eslint": "8.57.1",
+		"eslint-config-wikimedia": "0.32.6",
+		"grunt-banana-checker": "0.13.0"
+	}
+}

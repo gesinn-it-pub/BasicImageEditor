@@ -1,0 +1,54 @@
+{
+	"root": true,
+	"extends": [
+		"wikimedia/client/es2017",
+		"wikimedia/vue3/es2017",
+		"wikimedia/mediawiki"
+	],
+	"ignorePatterns": [
+		"resources/lib/",
+		"vendor/",
+		"node_modules/"
+	],
+	"overrides": [
+		{
+			"files": [
+				"tests/qunit/**/*.js"
+			],
+			"extends": [
+				"wikimedia/qunit",
+				"wikimedia/mediawiki/qunit"
+			]
+		},
+		{
+			"files": [
+				"tests/e2e/**/*.mjs"
+			],
+			"extends": [
+				"wikimedia/server"
+			],
+			"env": {
+				"browser": true
+			},
+			"globals": {
+				"mw": "readonly"
+			},
+			"parserOptions": {
+				"ecmaVersion": 2022,
+				"sourceType": "module"
+			},
+			"rules": {
+				"no-console": "off",
+				"n/no-process-exit": "off",
+				"es-x/no-top-level-await": "off",
+				"compat/compat": "off",
+				"n/no-unsupported-features/node-builtins": "off",
+				"no-underscore-dangle": "off",
+				"security/detect-non-literal-fs-filename": "off",
+				"jsdoc/require-param": "off",
+				"jsdoc/require-returns": "off",
+				"max-len": "off"
+			}
+		}
+	]
+}

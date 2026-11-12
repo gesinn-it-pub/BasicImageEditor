@@ -1,0 +1,200 @@
+{
+	"name": "BasicImageEditor",
+	"version": "0.1.0",
+	"author": [
+		"Richard Evans"
+	],
+	"url": "https://www.mediawiki.org/wiki/Extension:BasicImageEditor",
+	"descriptionmsg": "basicimageeditor-desc",
+	"license-name": "GPL-2.0-or-later",
+	"type": "media",
+	"requires": {
+		"MediaWiki": ">= 1.43.0"
+	},
+	"AutoloadNamespaces": {
+		"MediaWiki\\Extension\\BasicImageEditor\\": "includes/"
+	},
+	"TestAutoloadNamespaces": {
+		"MediaWiki\\Extension\\BasicImageEditor\\Tests\\": "tests/phpunit/"
+	},
+	"MessagesDirs": {
+		"BasicImageEditor": [
+			"i18n"
+		]
+	},
+	"ExtensionMessagesFiles": {
+		"BasicImageEditorAlias": "BasicImageEditor.alias.php"
+	},
+	"ServiceWiringFiles": [
+		"includes/ServiceWiring.php"
+	],
+	"SpecialPages": {
+		"BasicImageEditor": {
+			"class": "MediaWiki\\Extension\\BasicImageEditor\\SpecialBasicImageEditor",
+			"services": [
+				"BasicImageEditor.EligibilityChecker",
+				"RepoGroup",
+				"RevisionLookup",
+				"MainConfig"
+			]
+		},
+		"BasicImageEditorFile": {
+			"class": "MediaWiki\\Extension\\BasicImageEditor\\SpecialBasicImageEditorFile",
+			"services": [
+				"RepoGroup"
+			]
+		}
+	},
+	"HookHandlers": {
+		"main": {
+			"class": "MediaWiki\\Extension\\BasicImageEditor\\Hooks",
+			"services": [
+				"BasicImageEditor.EligibilityChecker",
+				"RepoGroup"
+			]
+		}
+	},
+	"Hooks": {
+		"SkinTemplateNavigation::Universal": "main",
+		"BeforePageDisplay": "main",
+		"ListDefinedTags": "main",
+		"ChangeTagsListActive": "main",
+		"ChangeTagsAllowedAdd": "main"
+	},
+	"ResourceFileModulePaths": {
+		"localBasePath": "resources",
+		"remoteExtPath": "BasicImageEditor/resources"
+	},
+	"ResourceModules": {
+		"ext.basicImageEditor": {
+			"packageFiles": [
+				"ext.basicImageEditor/init.js",
+				"ext.basicImageEditor/App.vue",
+				"ext.basicImageEditor/render.js",
+				"ext.basicImageEditor/uploader.js"
+			],
+			"styles": [
+				"ext.basicImageEditor/editor.less"
+			],
+			"messages": [
+				"basicimageeditor-loading",
+				"basicimageeditor-load-error",
+				"basicimageeditor-stage-label",
+				"basicimageeditor-keyboard-help",
+				"basicimageeditor-tool-crop",
+				"basicimageeditor-ratio-free",
+				"basicimageeditor-ratio-original",
+				"basicimageeditor-tool-rotate",
+				"basicimageeditor-rotate-left",
+				"basicimageeditor-rotate-right",
+				"basicimageeditor-tool-flip",
+				"basicimageeditor-flip-horizontal",
+				"basicimageeditor-flip-vertical",
+				"basicimageeditor-tool-straighten",
+				"basicimageeditor-degrees",
+				"basicimageeditor-tool-brightness",
+				"basicimageeditor-tool-contrast",
+				"basicimageeditor-save",
+				"basicimageeditor-reset",
+				"basicimageeditor-cancel",
+				"basicimageeditor-save-title",
+				"basicimageeditor-target-label",
+				"basicimageeditor-target-version",
+				"basicimageeditor-target-new",
+				"basicimageeditor-all-uses-warning",
+				"basicimageeditor-newname-label",
+				"basicimageeditor-newname-help",
+				"basicimageeditor-newname-empty",
+				"basicimageeditor-newname-same",
+				"basicimageeditor-newname-exists",
+				"basicimageeditor-summary-label",
+				"basicimageeditor-summary-crop",
+				"basicimageeditor-summary-rotate",
+				"basicimageeditor-summary-flip",
+				"basicimageeditor-summary-straighten",
+				"basicimageeditor-summary-brightness",
+				"basicimageeditor-summary-contrast",
+				"basicimageeditor-derived-from",
+				"basicimageeditor-saving",
+				"basicimageeditor-error-result-toolarge",
+				"basicimageeditor-error-save",
+				"basicimageeditor-conflict-title",
+				"basicimageeditor-conflict-text",
+				"basicimageeditor-conflict-overwrite",
+				"basicimageeditor-conflict-new",
+				"basicimageeditor-warnings-title",
+				"basicimageeditor-warnings-text",
+				"basicimageeditor-warnings-continue",
+				"basicimageeditor-warning-duplicate",
+				"basicimageeditor-warning-duplicate-archive",
+				"basicimageeditor-warning-was-deleted",
+				"basicimageeditor-warning-badfilename",
+				"basicimageeditor-warning-other",
+				"comma-separator",
+				"size-megabytes"
+			],
+			"dependencies": [
+				"vue",
+				"@wikimedia/codex",
+				"ext.basicImageEditor.core",
+				"ext.basicImageEditor.cropper",
+				"mediawiki.api",
+				"mediawiki.confirmCloseWindow",
+				"mediawiki.language",
+				"mediawiki.util"
+			]
+		},
+		"ext.basicImageEditor.core": {
+			"packageFiles": [
+				"ext.basicImageEditor.core/index.js",
+				"ext.basicImageEditor.core/adjustments.js",
+				"ext.basicImageEditor.core/geometry.js",
+				"ext.basicImageEditor.core/state.js"
+			]
+		},
+		"ext.basicImageEditor.cropper": {
+			"packageFiles": [
+				"lib/cropperjs/cropper.js"
+			],
+			"styles": [
+				"lib/cropperjs/cropper.css"
+			]
+		},
+		"ext.basicImageEditor.saved": {
+			"scripts": [
+				"ext.basicImageEditor.saved/saved.js"
+			],
+			"messages": [
+				"basicimageeditor-saved"
+			],
+			"dependencies": [
+				"mediawiki.notification"
+			]
+		}
+	},
+	"QUnitTestModule": {
+		"localBasePath": "",
+		"remoteExtPath": "BasicImageEditor",
+		"scripts": [
+			"tests/qunit/ext.basicImageEditor.core.test.js"
+		],
+		"dependencies": [
+			"ext.basicImageEditor.core"
+		]
+	},
+	"config": {
+		"BasicImageEditorJpegQuality": {
+			"value": 92,
+			"description": "JPG encoding quality, 1 to 100."
+		},
+		"BasicImageEditorMaxPixels": {
+			"value": 50000000,
+			"description": "Largest image, in pixels, that can be opened. Larger files show no tab."
+		},
+		"BasicImageEditorAllowSaveAsNew": {
+			"value": true,
+			"description": "Whether \"New file\" is offered in the save dialog."
+		}
+	},
+	"manifest_version": 2
+}

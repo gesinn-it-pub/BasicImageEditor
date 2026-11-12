@@ -1,0 +1,110 @@
+@import 'mediawiki.skin.variables.less';
+
+.ext-basicimageeditor-layout {
+	display: grid;
+	grid-template-columns: minmax( 0, 1fr ) 18rem;
+	grid-template-areas:
+		'stage tools'
+		'help tools';
+	grid-template-rows: auto 1fr;
+	gap: 0 @spacing-150;
+}
+
+.ext-basicimageeditor-stage {
+	grid-area: stage;
+	position: relative;
+	height: 70vh;
+	min-height: 20rem;
+	background-color: @background-color-interactive-subtle;
+	border: @border-width-base @border-style-base @border-color-subtle;
+
+	&:focus {
+		outline: @border-width-thick @border-style-base @border-color-progressive--focus;
+	}
+}
+
+.ext-basicimageeditor-image {
+	// Cropper.js needs a block element with a bounded size.
+	display: block;
+	max-width: 100%;
+}
+
+.ext-basicimageeditor-stage-loading {
+	position: absolute;
+	top: 50%;
+	left: 15%;
+	right: 15%;
+}
+
+.ext-basicimageeditor-keyboard-help {
+	grid-area: help;
+	color: @color-subtle;
+	font-size: @font-size-small;
+}
+
+.ext-basicimageeditor-tools {
+	grid-area: tools;
+	display: flex;
+	flex-direction: column;
+	gap: @spacing-100;
+}
+
+.ext-basicimageeditor-group {
+	margin: 0;
+	padding: 0;
+	border: 0;
+
+	legend {
+		padding: 0;
+		margin-bottom: @spacing-25;
+		font-weight: @font-weight-bold;
+	}
+
+	.cdx-button {
+		margin: 0 @spacing-25 @spacing-25 0;
+	}
+}
+
+.ext-basicimageeditor-slider {
+	display: grid;
+	grid-template-columns: 1fr auto;
+	gap: @spacing-25;
+
+	label {
+		font-weight: @font-weight-bold;
+	}
+
+	output {
+		font-variant-numeric: tabular-nums;
+	}
+
+	input {
+		grid-column: 1 / -1;
+		width: 100%;
+	}
+}
+
+.ext-basicimageeditor-actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: @spacing-50;
+	padding-top: @spacing-50;
+	border-top: @border-width-base @border-style-base @border-color-subtle;
+}
+
+// Narrow windows: tools below the image. Mobile is not supported in v1, but
+// small desktop windows should still be usable.
+@media ( max-width: @max-width-breakpoint-tablet ) {
+	.ext-basicimageeditor-layout {
+		grid-template-columns: minmax( 0, 1fr );
+		grid-template-areas:
+			'stage'
+			'help'
+			'tools';
+		grid-template-rows: auto;
+	}
+
+	.ext-basicimageeditor-stage {
+		height: 55vh;
+	}
+}
