@@ -381,6 +381,8 @@ async function testAllTools() {
 		[ 'cropped', 'rotated', 'flipped', 'straightened', 'brightness adjusted', 'contrast adjusted' ]
 			.every( ( tool ) => summary.toLowerCase().includes( tool ) ),
 		summary );
+	check( 'summary ends with the BasicImageEditor note',
+		summary.endsWith( ' (edited with BasicImageEditor)' ), summary );
 	await page.screenshot( { path: path.join( OUT, '03-save-dialog.png' ) } );
 	await page.keyboard.press( 'Escape' );
 	await page.waitForTimeout( 300 );

@@ -631,7 +631,7 @@ module.exports = exports = defineComponent( {
 		// --- Saving --------------------------------------------------------
 
 		openSaveDialog() {
-			this.summary = stateHelpers.buildSummary(
+			const toolList = stateHelpers.buildSummary(
 				this.changedTools,
 				// Messages used here:
 				// * basicimageeditor-summary-crop
@@ -643,6 +643,8 @@ module.exports = exports = defineComponent( {
 				( tool ) => mw.msg( 'basicimageeditor-summary-' + tool ),
 				mw.msg( 'comma-separator' )
 			);
+			// The user may edit or remove the "edited with" note like the rest.
+			this.summary = mw.msg( 'basicimageeditor-summary-with-tools', toolList );
 			this.saveError = '';
 			this.saveDialogOpen = true;
 		},

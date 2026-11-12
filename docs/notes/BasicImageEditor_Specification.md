@@ -151,7 +151,7 @@ Saving overwrites the file with a new version by default; the previous version s
 
 **Edit summary**
 
-- Pre-filled from the tools used, for example "Cropped, straightened, brightness adjusted". The user can edit it.
+- Pre-filled from the tools used, followed by a note naming the extension, for example "Cropped, straightened, brightness adjusted (edited with BasicImageEditor)". This applies to both a new version and a new file. The user can edit all of it, including removing the note.
 - The upload carries the change tag `basicimageeditor`, so these uploads can be filtered in logs and recent changes.
 
 **Conflicts**
