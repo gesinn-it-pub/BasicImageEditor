@@ -1,7 +1,8 @@
 {
 	"private": true,
 	"scripts": {
-		"test": "eslint --cache . && banana-checker i18n/"
+		"test": "eslint --cache . && banana-checker i18n/",
+		"test-coverage": "eslint --cache . && banana-checker i18n/"
 	},
 	"devDependencies": {
 		"eslint": "8.57.1",
