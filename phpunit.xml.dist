@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<phpunit colors="true">
+	<testsuites>
+		<testsuite name="extension-basicimageeditor">
+			<directory>tests/phpunit</directory>
+		</testsuite>
+	</testsuites>
+	<coverage>
+		<include>
+			<directory suffix=".php">.</directory>
+		</include>
+		<exclude>
+			<directory>vendor</directory>
+			<directory>node_modules</directory>
+			<directory>tests</directory>
+			<directory>build</directory>
+			<directory>docs</directory>
+		</exclude>
+	</coverage>
+</phpunit>
