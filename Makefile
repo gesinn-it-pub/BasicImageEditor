@@ -20,3 +20,16 @@ COMPOSER_EXT  ?= true
 NODE_JS       ?= true
 
 include build/Makefile
+
+.PHONY: composer-phan composer-phan-update-baseline
+composer-phan: .init
+ifdef COMPOSER_EXT
+	$(show-current-target)
+	$(compose-exec-wiki) bash -c "cd $(EXTENSION_FOLDER) && composer phan $(COMPOSER_PARAMS)"
+endif
+
+composer-phan-update-baseline: .init
+ifdef COMPOSER_EXT
+	$(show-current-target)
+	$(compose-exec-wiki) bash -c "cd $(EXTENSION_FOLDER) && composer phan -- --save-baseline=.phan/baseline.php"
+endif
